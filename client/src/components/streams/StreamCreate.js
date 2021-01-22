@@ -15,10 +15,25 @@ class StreamCreate extends React.Component {
       </div>
     );
   }
+
+  /*
+  //we don't need event as redux form will take care of not reloading the page
+  onSubmit(event) {
+    event.preventDefault();
+  }
+  */
+
+  onSubmit(formValues) {
+    console.log(formValues);
+  }
+
   render() {
     return (
       <div>
-        <form class="ui form">
+        <form
+          onSubmit={this.props.handleSubmit(this.onSubmit)}
+          className="ui form"
+        >
           <Field
             name="title"
             component={this.renderInput}
@@ -29,6 +44,7 @@ class StreamCreate extends React.Component {
             component={this.renderInput}
             label="Enter description"
           />
+          <button className="ui button primary">Submit</button>
         </form>
       </div>
     );
