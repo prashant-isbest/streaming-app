@@ -14,7 +14,7 @@ class StreamCreate extends React.Component {
     }
   }
   renderInput = ({ input, label, meta }) => {
-    console.log(meta);
+    // console.log(meta);
     const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
     return (
       /*
@@ -38,9 +38,10 @@ class StreamCreate extends React.Component {
   }
   */
 
-  onSubmit(formValues) {
+  onSubmit = (formValues) => {
     console.log(formValues);
-  }
+    this.props.createStream(formValues);
+  };
 
   render() {
     return (
@@ -80,7 +81,10 @@ const validate = (formValues) => {
 
   return errors;
 };
-export default reduxForm({
+
+const formWrapped = reduxForm({
   form: 'streamCreate',
   validate: validate,
 })(StreamCreate);
+
+export default connect(null, { createStream })(formWrapped);
