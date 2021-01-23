@@ -12,6 +12,7 @@ class StreamCreate extends React.Component {
   }
   renderInput = ({ input, label, meta }) => {
     console.log(meta);
+    const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
     return (
       /*
       <input
@@ -19,7 +20,7 @@ class StreamCreate extends React.Component {
          value={formProps.input.value}
       />
       */
-      <div className="field">
+      <div className={className}>
         <label>{label}</label>
         <input {...input} />
         {this.renderError(meta)}
